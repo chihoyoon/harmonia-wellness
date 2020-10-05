@@ -14,5 +14,20 @@
     "morgan": "~1.9.1",
     "node-sass-middleware": "0.11.0",
     "pug": "2.0.0-beta11"
-  }
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chihoyoon/harmonia-wellness.git"
+  },
+  "author": "Danny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chihoyoon/harmonia-wellness/issues"
+  },
+  "homepage": "https://github.com/chihoyoon/harmonia-wellness#readme"
 }
