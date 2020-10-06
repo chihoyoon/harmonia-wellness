@@ -17,6 +17,18 @@ router.get("/services", function (req, res, next) {
   res.render("services");
 });
 
+router.get("/services-body-care", function (req, res, next) {
+  res.render("services-body-care");
+});
+
+router.get("/services-facial-care", function (req, res, next) {
+  res.render("services-facial-care");
+});
+
+router.get("/services-more", function (req, res, next) {
+  res.render("services-more");
+});
+
 router.get("/testimonials", function (req, res, next) {
   res.render("testimonials");
 });
