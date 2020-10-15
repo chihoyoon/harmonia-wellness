@@ -1,7 +1,13 @@
 var createError = require("http-errors");
 var express = require("express");
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
 var path = require("path");
+var bodyPaser = require("body-parser");
 var cookieParser = require("cookie-parser");
+var session = require("express-session");
+var flash = require("connect-flash");
+var passport =require("passport");
 var logger = require("morgan");
 var sassMiddleware = require("node-sass-middleware");
 
@@ -10,13 +16,32 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+mongoose.connect("mongodb://localhost:27017/test",{useMongoClient: true});
+
+setUpPassport();
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyPaser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60,
+    },
+  })
+);
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(
   sassMiddleware({
     src: path.join(__dirname, "public"),

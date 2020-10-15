@@ -1,10 +1,10 @@
 # Web development of massage shop (harmonia-wellness)
 
-## ## Application Information
+## Application Information
 
 1. Using Node.js, Bootstrap
 
-2. Using MongoDB - CRUD(create, read, update, delete) => user page & booking page
+2. Using MongoDB - CRUD(create, read, update, delete) => user pages & reservation pages
 
 ---
 
