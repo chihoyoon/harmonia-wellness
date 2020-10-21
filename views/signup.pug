@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    br
+    form.form-row.align-items-center.pl-5(action="/signup", method="POST")
+        .col-auto.text-white
+            label(for="exampleInput") User Name
+            input.form-control.col-md(type="text", name="username", placeholder="username")
+        .col-auto.text-white
+            label(for="exampleInputPassword1") Password
+            input.form-control.col-md(type="password", name="password", placeholder="password")
+        .col-auto.text-white
+            label(for="exampleInput") Phone Number
+            input.form-control.col-md(type="text", name="phonenumber", placeholder="phonenumber")
+        .col-auto.text-white
+            label(for="exampleInput") E-mail
+            input.form-control.col-md(type="text", name="email", placeholder="email")
+        .col-auto
+            buttonbtn.btn-lg.btn-primary.col-md(type="submit") Submit

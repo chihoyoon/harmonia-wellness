@@ -16,7 +16,7 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
-mongoose.connect("mongodb://localhost:27017/test",{useMongoClient: true});
+mongoose.connect("mongodb://localhost/hamoniadb",{useMongoClient: true});
 
 setUpPassport();
 
