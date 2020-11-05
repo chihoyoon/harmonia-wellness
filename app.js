@@ -12,7 +12,7 @@ var logger = require("morgan");
 var sassMiddleware = require("node-sass-middleware");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var userRouter = require("./routes/user");
 
 var app = express();
 
@@ -53,7 +53,7 @@ app.use(
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/user", userRouter);
 
 app.use(function (req, res, next) {
   next(createError(404));

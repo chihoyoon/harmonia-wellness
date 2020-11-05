@@ -7,8 +7,8 @@ var userSchema = mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  phoneNumber: Number,
-  email: String,
+  phonenumber: { type: Number, required: true },
+  email: { type: String, required: true },
 });
 
 userSchema.methods.name = function () {
