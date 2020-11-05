@@ -31,31 +31,35 @@ router.post("/sign-up", function (req, res, next) {
       phonenumber: phonenumber,
       email: email
     });
-    newUser.save(next);
+    newUser.save(next);    
   });
 },passport.authenticate("login", {
-  successRedirect: "/user-info",
+  successRedirect: "/",
   failureRedirect: "/sign-up",
   failureFlash: true
 }));
 
-router.get("/login", function (req, res, next) {
+router.get("/:username",function(req,res,next){
+  User.findOne({username:req.params.username},function(err,user){
+    if(err) {return next(err);}
+    if(!user){return next(404);}
+    res.render("welcom",{user:user});
+  });
+});
+
+router.get("/login", function (req, res) {
   res.render("login");
 });
 
 router.post("/login", passport.authenticate("login", {
-  successRedirect: "/user-info",
+  successRedirect: "/",
   failureRedirect: "/login",
   failureFlash: true
 }));
 
-router.get("/logout", function (req, res, next) {
+router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("../");
-});
-
-router.get("/user-info", function (req, res, next) {
-  res.render("/user-info")
 });
 
 function ensureAuthenticated(req,res,next){
@@ -67,18 +71,18 @@ function ensureAuthenticated(req,res,next){
   }
 };
 
-router.get("/user-info",ensureAuthenticated,function(req,res){
-  res.render("user-info");
+router.get("/edit",ensureAuthenticated,function(req,res){
+  res.render("edit");
 });
 
-router.post("/user-info",ensureAuthenticated,function(req,res,next){
+router.post("/edit",ensureAuthenticated,function(req,res,next){
   req.user.password = req.body.password;
   req.user.phonenumber = req.body.phonenumber;
   req.user.email = req.body.email;
   req.user.save(function(err){
     if(err){next(err);return;}
     req.flash("info","Profile updated!");
-    res.redirect("/user-info");
+    res.redirect("/edit");
   });
 });
 

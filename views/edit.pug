@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    br
+    h1.text-info User Profile
+    br
+    .container.text-white
+        form.form-row
+            .col-1: input.form-control.bg-secondary.text-warning(type="text" readonly name="username" value="username")
+            .col-1: input.form-control.bg-secondary.text-warning(type="text" readonly name="password" value="password")
+            .col-1: input.form-control.bg-secondary.text-warning(type="text" readonly name="phonenumber" value="phonenumber")
+            .col-1: input.form-control.bg-secondary.text-warning(type="text" readonly name="email" value="email")
+        form.form-row(action="../user/edit" method="POST")
+            .col-1: input.form-control(type="text" name="username" value={username})
+            .col-1: input.form-control(type="password" name="password" value={password})
+            .col-1: input.form-control(type="text" name="phonenumber" value={phonenumber})
+            .col-1: input.form-control(type="text" name="email" value={email})
+            .col-1: button.btn.btn-primary(type="submit") Submit

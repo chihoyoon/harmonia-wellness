@@ -3,7 +3,7 @@ extends layout
 block content
     br
     h1.text-primary Login
-    form.form-row.align-items-center.pl-5(action="./book/sigin", method="POST")
+    form.form-row.align-items-center.pl-5(action="../user/login", method="POST")
         .col-auto.text-white
             label(for="exampleInput") User Name
             input.form-control.col-md(type="text", name="username", placeholder="username")
