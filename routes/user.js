@@ -41,9 +41,9 @@ router.post("/sign-up", function (req, res, next) {
       phonenumber: phonenumber,
       email: email
     });
-  },passport.authenticate("sign-in", {
-    successRedirect:"/user-info",
-    failureRedirect:"/sign-up",
+  },passport.authenticate("login", {
+    successRedirect: "/user-info",
+    failureRedirect: "/sign-up",
     failureFlash: true
   })
   );  
@@ -54,7 +54,7 @@ router.get("/login", function (req, res, next) {
 });
 
 router.post("/login", passport.authenticate("login", {
-  successRedirect: "/user-info"
+  successRedirect: "/user-info",
   failureRedirect: "/login",
   failureFlash: true
 }));

@@ -14,9 +14,11 @@ var sassMiddleware = require("node-sass-middleware");
 var indexRouter = require("./routes/index");
 var userRouter = require("./routes/user");
 
+var setUpPassport = require("./models/setuppassport");
+
 var app = express();
 
-mongoose.connect("mongodb://localhost/hamoniadb",{useMongoClient: true});
+mongoose.connect("mongodb://localhost/hamoniadb");
 
 setUpPassport();
 
