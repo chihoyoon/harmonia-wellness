@@ -6,16 +6,18 @@ var SALT_FACTOR = 10;
 var userSchema = mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
   phonenumber: { type: Number, required: true },
   email: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+  displayName: String,
+  bio: String
 });
 
 userSchema.methods.name = function () {
   return this.displayName || this.username;
 };
 
-var noop = function () {};
+var noop = function (){};
 
 userSchema.pre("save", function (done) {
   var user = this;

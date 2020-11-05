@@ -1,6 +1,5 @@
 var express = require("express");
 var passport = require("passport");
-const { db } = require("../models/user");
 var User = require("../models/user");
 var router = express.Router();
 
@@ -9,15 +8,6 @@ router.use(function(req, res, next){
   res.locals.errors = req.flash("error");
   res.locals.infos = req.flash("info");
   next();
-});
-
-
-router.get("/", (req, res) => {
-  if (req.session.Logined) {
-    res.render("admin");
-  } else {
-    res.redirect("../");
-  }
 });
 
 router.get("/sign-up", function (req, res, next) {
@@ -29,25 +19,25 @@ router.post("/sign-up", function (req, res, next) {
   var password = req.body.password;
   var phonenumber = req.body.phonenumber;
   var email = req.body.email;
-  user.findOne({username:username}, function (err, user){
+  User.findOne({username:username}, function (err, user){
     if (err) {return next(err);}
     if (user) {
       req.flash ("err", "That username is taken. Try another.")
       return res.redirect("/sign-up");
-    }
+    } 
     var newUser = new user({
       username: username,
       password: password,
       phonenumber: phonenumber,
       email: email
     });
-  },passport.authenticate("login", {
-    successRedirect: "/user-info",
-    failureRedirect: "/sign-up",
-    failureFlash: true
-  })
-  );  
-});
+    newUser.save(next);
+  });
+},passport.authenticate("login", {
+  successRedirect: "/user-info",
+  failureRedirect: "/sign-up",
+  failureFlash: true
+}));
 
 router.get("/login", function (req, res, next) {
   res.render("login");
