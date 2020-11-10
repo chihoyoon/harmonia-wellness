@@ -1,6 +1,7 @@
 var express = require("express");
 var passport = require("passport");
 var User = require("../models/user");
+var Book = require("../models/book");
 var router = express.Router();
 
 router.use(function(req, res, next){
@@ -84,5 +85,19 @@ router.post("/edit",ensureAuthenticated,function(req,res,next){
   });
 });
 
+router.get("/book", function (req, res) {
+  Book.find({}, function (err, collection) {
+    res.send(collection);
+  });
+});
+
+router.post("/book", function (req, res) {  
+  var newBook = new Book ({
+    date: req.body.date,
+    time: req.body.time    
+  });
+  newBook.save()
+  res.send(book);
+});
 
 module.exports = router;
