@@ -1,16 +1,16 @@
 var mongoose = require("mongoose");
+const { Schema } = mongoose;
+
 var bcrypt = require("bcrypt");
 
 var SALT_FACTOR = 10;
 
-var userSchema = mongoose.Schema({
+var userSchema = mongoose.Schema({  
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  phonenumber: { type: Number, required: true },
-  email: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-  displayName: String,
-  bio: String
+  createdAt:{type:Date,default:Date.now},
+  diplayName: String,
+  bio: String 
 });
 
 userSchema.methods.name = function () {

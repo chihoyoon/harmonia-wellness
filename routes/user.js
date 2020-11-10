@@ -10,32 +10,30 @@ router.use(function(req, res, next){
   next();
 });
 
-router.get("/sign-up", function (req, res, next) {
-  res.render("sign-up")
+router.get("/signup", function (req, res) {
+  res.render("signup")
 });
 
-router.post("/sign-up", function (req, res, next) {
+router.post("/signup", function (req, res, next) {
   var username = req.body.username;
-  var password = req.body.password;
-  var phonenumber = req.body.phonenumber;
-  var email = req.body.email;
+  var password = req.body.password;  
   User.findOne({username:username}, function (err, user){
     if (err) {return next(err);}
     if (user) {
       req.flash ("err", "That username is taken. Try another.")
-      return res.redirect("/sign-up");
-    } 
-    var newUser = new user({
+      return res.redirect("/signup");
+    } else {
+      var newUser = new User({
       username: username,
-      password: password,
-      phonenumber: phonenumber,
-      email: email
+      password: password,      
     });
-    newUser.save(next);    
+    newUser.save();
+    console.log(newUser);
+    }     
   });
-},passport.authenticate("login", {
-  successRedirect: "/",
-  failureRedirect: "/sign-up",
+},passport.authenticate("local", {
+  successRedirect: "/:username",
+  failureRedirect: "/signup",
   failureFlash: true
 }));
 
@@ -52,7 +50,7 @@ router.get("/login", function (req, res) {
 });
 
 router.post("/login", passport.authenticate("login", {
-  successRedirect: "/",
+  successRedirect: "/:username",
   failureRedirect: "/login",
   failureFlash: true
 }));

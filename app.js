@@ -18,7 +18,7 @@ var setUpPassport = require("./models/setuppassport");
 
 var app = express();
 
-mongoose.connect("mongodb://localhost/hamoniadb", {
+mongoose.connect("mongodb://localhost/harmonia", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

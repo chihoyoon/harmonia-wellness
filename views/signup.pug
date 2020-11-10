@@ -3,7 +3,7 @@ extends layout
 block content
     br
     h1.text-primary Sign Up
-    form.form-row.align-items-center.pl-5(action="../user/sign-up", method="POST")
+    form.form-row.align-items-center.pl-5(action="/user/signup", method="POST")
         .col-auto.text-white
             label(for="exampleInput") User Name
             input.form-control.col-md(type="text", name="username", placeholder="username")
@@ -17,5 +17,5 @@ block content
             label(for="exampleInput") E-mail
             input.form-control.col-md(type="text", name="email", placeholder="email")
         .col-auto
-            buttonbtn.btn-lg.btn-primary.col-md(type="submit") Submit
+            button.btn.btn-lg.btn-primary.col-md(type="submit") Submit
     br

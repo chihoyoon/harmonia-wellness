@@ -25,7 +25,8 @@
   "description": "",
   "main": "app.js",
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
   },
   "repository": {
     "type": "git",
